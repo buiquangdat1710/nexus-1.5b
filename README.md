@@ -1,6 +1,6 @@
 # Nexus-1.5B
 
-**Rank-Enhanced Preference Optimization for Mathematical Reasoning**
+**Length-Penalized Reward Optimization**
 
 [![Hugging Face Model](https://img.shields.io/badge/🤗-Model-blue)](https://huggingface.co/Dat1710/nexus-1.5b)
 [![License](https://img.shields.io/badge/License-MIT-green)]()
