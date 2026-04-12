@@ -2,7 +2,7 @@
 
 **Rank-Enhanced Preference Optimization for Mathematical Reasoning**
 
-[![Hugging Face Model](https://img.shields.io/badge/🤗-Model-blue)](https://huggingface.co/Dat1710/qwen2.5-math-1.5b-repo)
+[![Hugging Face Model](https://img.shields.io/badge/🤗-Model-blue)](https://huggingface.co/Dat1710/nexus-1.5b)
 [![License](https://img.shields.io/badge/License-MIT-green)]()
 
 ---
@@ -17,7 +17,7 @@ J_{\text{REPO}}(\theta) = \mathbb{E}\left[\frac{1}{\sum_{i=1}^G |o_i|}\sum_{i=1}
 \]
 $$
 
-Experimental results on both English and Chinese mathematical benchmarks demonstrate that Qwen2.5-Math-1.5B-REPO achieves **state-of-the-art performance** among 1.5B parameter models, surpassing its instruct counterpart by **+4.4% on MATH**, **+2.8% on MMLU STEM**, and **+2.8% on QA (Chinese)** . Furthermore, with **Tool-Integrated Reasoning (TIR)** the model reaches **84% on MATH**, outperforming both the base instruct model and its COT variant.
+Experimental results on both English and Chinese mathematical benchmarks demonstrate that Nexus-1.5B achieves **state-of-the-art performance** among 1.5B parameter models, surpassing its instruct counterpart by **+4.4% on MATH**, **+2.8% on MMLU STEM**, and **+2.8% on QA (Chinese)** . Furthermore, with **Tool-Integrated Reasoning (TIR)** the model reaches **84% on MATH**, outperforming both the base instruct model and its COT variant.
 
 ---
 
@@ -29,7 +29,7 @@ Mathematical reasoning remains a cornerstone challenge for large language models
 - Applies **asymmetric clipping** with separate low and high epsilon thresholds, as motivated by the REPO objective.
 - Normalizes the loss by **total number of tokens** in the group, ensuring fair contribution from responses of varying lengths.
 
-We apply REPO to the Qwen2.5-Math-1.5B-Instruct model using the MATH-500 dataset as a training source. The resulting model, **Qwen2.5-Math-1.5B-REPO**, exhibits substantial improvements across a wide range of mathematical benchmarks.
+We apply REPO to the Qwen2.5-Math-1.5B-Instruct model using the MATH-500 dataset as a training source. The resulting model, **Nexus-1.5B**, exhibits substantial improvements across a wide range of mathematical benchmarks.
 
 ---
 
@@ -60,7 +60,7 @@ The REPO training pipeline consists of:
 
 ### 3.1. Comparison with General and Specialized Models
 
-We evaluate Qwen2.5-Math-1.5B-REPO on six mathematical benchmarks spanning English and Chinese. All evaluations use few-shot chain-of-thought prompting.
+We evaluate Nexus-1.5B on six mathematical benchmarks spanning English and Chinese. All evaluations use few-shot chain-of-thought prompting.
 
 | Model | GSM8K (8-shot) | MATH (4-shot) | MMLU STEM (4-shot) | CMATH (6-shot) | GaoKao Math Cloze (5-shot) | QA (4-shot) |
 |-------|----------------|---------------|--------------------|----------------|----------------------------|-------------|
@@ -77,7 +77,7 @@ We evaluate Qwen2.5-Math-1.5B-REPO on six mathematical benchmarks spanning Engli
 | Internlm2-Math-Base-20B | 68.2 | 30.4 | 63.0 | 65.9 | 16.9 | 40.2 |
 | Qwen2-Math-1.5B-Instruct | 84.2 | 69.4 | 54.9 | 79.6 | 59.7 | 50.7 |
 | Qwen2.5-Math-1.5B-Instruct | 84.8 | 75.8 | 57.5 | 83.0 | 65.5 | 54.1 |
-| **Qwen2.5-Math-1.5B-REPO (Ours)** | **85.2** | **80.2** | **60.3** | **83.5** | **49.2** | **56.9** |
+| **Nexus-1.5B (Ours)** | **85.2** | **80.2** | **60.3** | **83.5** | **49.2** | **56.9** |
 
 **Key observations:**
 - **MATH benchmark**: REPO achieves **80.2%**, a **+4.4% improvement** over the instruct baseline (75.8%), and **+10.8%** over Qwen2-Math-1.5B-Instruct (69.4%).
@@ -89,7 +89,7 @@ We evaluate Qwen2.5-Math-1.5B-REPO on six mathematical benchmarks spanning Engli
 
 We further evaluate the model using **Tool-Integrated Reasoning (TIR)** , where the model can invoke external tools (e.g., Python interpreter) during generation. TIR significantly boosts performance on complex mathematical tasks.
 
-| Benchmark | Qwen2.5-Math-1.5B-Instruct (COT) | Qwen2.5-Math-1.5B-REPO (COT) | Qwen2.5-Math-1.5B-Instruct (TIR) | Qwen2.5-Math-1.5B-REPO (TIR) |
+| Benchmark | Qwen2.5-Math-1.5B-Instruct (COT) | Nexus-1.5B (COT) | Qwen2.5-Math-1.5B-Instruct (TIR) | Nexus-1.5B (TIR) |
 |-----------|----------------------------------|-------------------------------|-----------------------------------|-------------------------------|
 | MATH | 78 | **83** | 80 | **84** |
 | Minerva Math | 30 | **33** | 33 | **40** |
@@ -132,8 +132,8 @@ The combination of REPO fine-tuning and TIR yields the best results across all c
 ```python
 from transformers import AutoModelForCausalLM, AutoTokenizer
 
-model = AutoModelForCausalLM.from_pretrained("Dat1710/qwen2.5-math-1.5b-repo")
-tokenizer = AutoTokenizer.from_pretrained("Dat1710/qwen2.5-math-1.5b-repo")
+model = AutoModelForCausalLM.from_pretrained("Dat1710/Nexus-1.5B")
+tokenizer = AutoTokenizer.from_pretrained("Dat1710/Nexus-1.5B")
 prompt = """You are an advanced mathematical reasoning model.
 Solve the following problem step by step, and put your final answer in \\boxed{}.
 
