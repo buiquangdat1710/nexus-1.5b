@@ -1,4 +1,4 @@
-# Qwen2.5-Math-1.5B-REPO
+# Nexus-1.5B
 
 **Rank-Enhanced Preference Optimization for Mathematical Reasoning**
 
@@ -9,7 +9,7 @@
 
 ## Abstract
 
-We introduce **Qwen2.5-Math-1.5B-REPO**, a fine-tuned language model specialized in mathematical reasoning, built upon the Qwen2.5-Math-1.5B-Instruct base. The model is trained using **Rank-Enhanced Preference Optimization (REPO)** , a novel reinforcement learning paradigm that leverages **group-wise ranking advantages** and **token-level clipped importance sampling**. REPO replaces traditional z-score advantage normalization with a **rank-based normalization** (mapping ranks to $$\([-1, 1]\)$$) and employs asymmetric clipping ($$\(\epsilon_{\text{low}}\), \(\epsilon_{\text{high}}\)$$) for stable policy updates, with loss normalized by the total number of tokens in each group:
+We introduce **Nexus-1.5B**, a fine-tuned language model specialized in mathematical reasoning, built upon the Qwen2.5-Math-1.5B-Instruct base. The model is trained using **Rank-Enhanced Preference Optimization (REPO)** , a novel reinforcement learning paradigm that leverages **group-wise ranking advantages** and **token-level clipped importance sampling**. REPO replaces traditional z-score advantage normalization with a **rank-based normalization** (mapping ranks to $$\([-1, 1]\)$$) and employs asymmetric clipping ($$\(\epsilon_{\text{low}}\), \(\epsilon_{\text{high}}\)$$) for stable policy updates, with loss normalized by the total number of tokens in each group:
 
 $$
 \[
