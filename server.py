@@ -26,7 +26,7 @@ app.add_middleware(
 )
 
 # Load model (chạy một lần)
-model_name = "Qwen/Qwen2.5-Math-1.5B-Instruct"
+model_name = "Dat1710/Nexus-1.5B"
 device = "cuda"
 
 print("Loading model...")
