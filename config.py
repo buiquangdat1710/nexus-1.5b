@@ -13,7 +13,7 @@ class Config:
 
     # dataset
     dataset_name    : str   = "HuggingFaceH4/MATH-500"
-    max_prompt_len  : int   = 512
+    max_prompt_len  : int   = 1024
 
     # group sampling
     G               : int   = 32
@@ -24,7 +24,7 @@ class Config:
     # LPRO params
     eps_low         : float = 0.20   
     eps_high        : float = 0.28   
-    lambda_len      : float = 0.05
+    lambda_len      : float = 0.1
     eps_r           : float = 1e-8
     eps_l           : float = 1e-8
 
@@ -38,7 +38,7 @@ class Config:
     lora_target_modules: List[str] = field(default_factory=lambda: ["q_proj", "k_proj", "v_proj", "o_proj", "gate_proj", "up_proj", "down_proj"])
 
     num_epochs      : int   = 5
-    lr              : float = 2e-4   # full finetune: 1e-5 - 5e-5, LoRA: 1e-4 - 5e-4
+    lr              : float = 2e-5   # full finetune: 1e-5 - 5e-5, LoRA: 1e-4 - 5e-4
     weight_decay    : float = 1e-2
     warmup_ratio    : float = 0.05
     grad_clip       : float = 1.0
@@ -62,7 +62,7 @@ def parse_args() -> Config:
     p.add_argument("--G",             type=int,   default=32)
     p.add_argument("--num_epochs",    type=int,   default=5)
     p.add_argument("--lr",            type=float, default=2e-4)
-    p.add_argument("--lambda_len",    type=float, default=0.05)
+    p.add_argument("--lambda_len",    type=float, default=0.1)
     p.add_argument("--eps_low",       type=float, default=0.20)
     p.add_argument("--eps_high",      type=float, default=0.28)
     p.add_argument("--max_new_tokens",type=int,   default=1024)
