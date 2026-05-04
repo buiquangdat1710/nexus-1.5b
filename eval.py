@@ -9,6 +9,10 @@ from evaluation.tasks.mmlu_stem_task import MMLUStemTask
 from evaluation.tasks.cmath_task import CMATHTask
 from evaluation.tasks.gaokao_cloze_task import GaoKaoClozeTask
 from evaluation.tasks.gaokao_qa_task import GaoKaoQATask
+from evaluation.tasks.minerva_math_task import MinervaMathTask
+from evaluation.tasks.gaokao_2023_en_task import GaoKao2023EnTask
+from evaluation.tasks.olympiad_bench_task import OlympiadBenchTask
+from evaluation.tasks.college_math_task import CollegeMathTask
 
 TASKS = {
     "math": MathTask,
@@ -16,7 +20,11 @@ TASKS = {
     "mmlu_stem": MMLUStemTask,
     "cmath": CMATHTask,
     "gaokao_cloze": GaoKaoClozeTask,
-    "gaokao_qa": GaoKaoQATask
+    "gaokao_qa": GaoKaoQATask,
+    "minerva_math": MinervaMathTask,
+    "gaokao_2023_en": GaoKao2023EnTask,
+    "olympiad_bench": OlympiadBenchTask,
+    "college_math": CollegeMathTask
 }
 
 def parse_args():
