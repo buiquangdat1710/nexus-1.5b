@@ -61,13 +61,10 @@ def main():
             correct += 1
 
     accuracy = (correct / len(prompts)) * 100
-    print("\n" + "="*50)
-    print("BÁO CÁO BENCHMARK")
-    print("="*50)
+    print("BENCHMARK")
     print(f"Model    : {args.model_path}")
     print(f"Task     : {args.task.upper()} ({task.num_shots}-shot)")
     print(f"Accuracy : {accuracy:.2f}% ({correct}/{len(prompts)})")
-    print("="*50)
 
 if __name__ == "__main__":
     main()

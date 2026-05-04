@@ -1,6 +1,7 @@
 import os
 import argparse
 from dataclasses import dataclass, field
+from typing import List
 
 @dataclass
 class Config:
@@ -11,12 +12,12 @@ class Config:
     hub_repo_id     : str   = "YOUR_HF_USERNAME/nexus-1.5b"
 
     # dataset
-    dataset_name    : str   = "lighteval/MATH"
+    dataset_name    : str   = "HuggingFaceH4/MATH-500"
     max_prompt_len  : int   = 512
 
     # group sampling
-    G               : int   = 8      
-    max_new_tokens  : int   = 1024
+    G               : int   = 32
+    max_new_tokens  : int   = 2048
     temperature     : float = 0.7
     top_p           : float = 0.95
 
@@ -28,8 +29,16 @@ class Config:
     eps_l           : float = 1e-8
 
     # training
-    num_epochs      : int   = 3
-    lr              : float = 5e-7
+    use_lora          : bool  = True
+    use_rule_based_rm : bool  = True
+    
+    lora_r            : int   = 16
+    lora_alpha        : int   = 32
+    lora_dropout      : float = 0.05
+    lora_target_modules: List[str] = field(default_factory=lambda: ["q_proj", "k_proj", "v_proj", "o_proj", "gate_proj", "up_proj", "down_proj"])
+
+    num_epochs      : int   = 5
+    lr              : float = 2e-4   # full finetune: 1e-5 - 5e-5, LoRA: 1e-4 - 5e-4
     weight_decay    : float = 1e-2
     warmup_ratio    : float = 0.05
     grad_clip       : float = 1.0
@@ -48,13 +57,12 @@ class Config:
 def parse_args() -> Config:
     p = argparse.ArgumentParser(description="DAPO + LPRO training for Qwen2.5-Math")
     p.add_argument("--model_name",    default="Qwen/Qwen2.5-Math-1.5B-Instruct")
-    p.add_argument("--rm_model_name", default="Qwen/Qwen2.5-Math-RM-72B")
     p.add_argument("--output_dir",    default="./nexus-1.5b")
     p.add_argument("--hub_repo_id",   default="YOUR_HF_USERNAME/nexus-1.5b")
-    p.add_argument("--G",             type=int,   default=8)
-    p.add_argument("--num_epochs",    type=int,   default=3)
-    p.add_argument("--lr",            type=float, default=5e-7)
-    p.add_argument("--lambda_len",    type=float, default=0.10)
+    p.add_argument("--G",             type=int,   default=32)
+    p.add_argument("--num_epochs",    type=int,   default=5)
+    p.add_argument("--lr",            type=float, default=2e-4)
+    p.add_argument("--lambda_len",    type=float, default=0.05)
     p.add_argument("--eps_low",       type=float, default=0.20)
     p.add_argument("--eps_high",      type=float, default=0.28)
     p.add_argument("--max_new_tokens",type=int,   default=1024)
