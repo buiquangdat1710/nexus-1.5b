@@ -234,7 +234,7 @@ with st.sidebar:
         "Max New Tokens",
         min_value=128,
         max_value=2048,
-        value=512,
+        value=1024,
         step=128
     )
     
@@ -242,7 +242,7 @@ with st.sidebar:
         "Temperature",
         min_value=0.1,
         max_value=2.0,
-        value=0.7,
+        value=0.5,
         step=0.1
     )
     
