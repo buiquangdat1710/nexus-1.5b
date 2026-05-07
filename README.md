@@ -62,7 +62,7 @@ LPRO introduces two core modifications over vanilla GRPO (Group Relative Policy 
 Instead of normalizing rewards with a plain z-score, the advantage for output $i$ in a group is penalized based on its length:
 
 $$
-A_i = \underbrace{\frac{r_i - \mu_r}{\sigma_r + \varepsilon_r}}_{\text{Correctness signal}} \;-\; \lambda \cdot \underbrace{\frac{L_i - \mu_L}{\sigma_L + \varepsilon_L}}_{\text{Length penalty}}
+A_i = \underbrace{\frac{r_i - \mu_r}{\sigma_r + \varepsilon_r}}_{\text{Correctness signal}} - \lambda \cdot \underbrace{\frac{L_i - \mu_L}{\sigma_L + \varepsilon_L}}_{\text{Length penalty}}
 $$
 
 Where:
